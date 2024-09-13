@@ -1,0 +1,25 @@
+#header-con{
+    background: url(../img/head-bg.jpg);
+    background-position: center;
+    background-size: cover;
+    position: relative;
+
+}
+#header-con::after{
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: linear-gradient(to top , #0000006e, #ffffff00, #0000006e);
+    z-index: 1;
+    backdrop-filter:blur(1px);
+}
+/* #gallery-con{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 2vmin;
+    row-gap: 2vmin;
+
+} */
