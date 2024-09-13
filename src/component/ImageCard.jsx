@@ -4,7 +4,8 @@ import { FaRegHeart } from "react-icons/fa";
 import { IoBagAddOutline } from "react-icons/io5";
 import { FiDownload } from "react-icons/fi";
 
-const ImageCard = ({ userImg, imgUrl }) => {
+const ImageCard = ({ userImg, imgUrl, userName,  }) => {
+  let defaultUserImg ='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXc5yOGyKuHNVoGQWWLMiioYs2BG0eJurWhg&s'
   return (
     <div id="img_card" className="relative w-[100%] bg-[#bababa] mb-[15px] rounded-xl overflow-hidden">
       <img src={imgUrl} alt="" className="w-full" />
@@ -20,11 +21,11 @@ const ImageCard = ({ userImg, imgUrl }) => {
       <div  className="img_content absolute bottom-2 left-0 flex items-center justify-between w-full text-[#ffffffc9]  px-3">
         <div className="flex items-center gap-[1vmin] justify-between cursor-pointer">
           <img
-            src={userImg}
+            src={userImg?userImg:defaultUserImg}
             className="rounded-full w-[6vmin] aspect-[1/1]"
             alt=""
           />
-          <p className="text-[.9rem] ">alex zendra. </p>
+          <p className="text-[.9rem] ">{userName}</p>
         </div>
         <p className="text-[1.9rem] hover:text-white  cursor-pointer">
           <FiDownload />

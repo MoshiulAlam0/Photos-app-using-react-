@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import Img_video_selector from "./Img_video_selector";
 import { CgSearch } from "react-icons/cg";
+import { MyContext } from "../../context/All_context";
 
 const Search = () => {
+  const {searchState} = useContext(MyContext);
+  console.log(searchState.setsearchValue)
+  
   return (
     <div
       id="search-con"
