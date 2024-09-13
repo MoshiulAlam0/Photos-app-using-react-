@@ -17,7 +17,7 @@ const Setting = () => {
   };
   let filter = ["all", "photo", "illustration", "vector"];
   return (
-    <div className="p-8 ">
+    <div id="setting" className="p-8 ">
       <div className="flex items-center justify-center gap-[3vmin] capitalize flex-wrap">
         {filter.map((e, i) => {
           return (

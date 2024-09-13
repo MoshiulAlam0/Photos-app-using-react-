@@ -6,9 +6,9 @@ import { FiDownload } from "react-icons/fi";
 
 const ImageCard = ({ userImg, imgUrl }) => {
   return (
-    <div className="relative bg-red-400 w-full h-fit ">
-      <img src={imgUrl} alt="" className="" />
-      <div className="absolute top-2 flex items-center justify-end gap-[4vmin] w-full text-[1.9rem] text-[#ffffffc9]  px-3">
+    <div id="img_card" className="relative w-[100%] bg-[#bababa] mb-[15px] rounded-xl overflow-hidden">
+      <img src={imgUrl} alt="" className="w-full" />
+      <div  className="img_content absolute top-2 flex  items-center justify-end gap-[4vmin] w-full text-[1.9rem] text-[#ffffffc9]  px-3">
         <span className="cursor-pointer hover:text-white">
           <FaRegHeart />
         </span>
@@ -17,7 +17,7 @@ const ImageCard = ({ userImg, imgUrl }) => {
         </span>
       </div>
 
-      <div className="absolute bottom-2 left-0 flex items-center justify-between w-full text-[#ffffffc9]  px-3">
+      <div  className="img_content absolute bottom-2 left-0 flex items-center justify-between w-full text-[#ffffffc9]  px-3">
         <div className="flex items-center gap-[1vmin] justify-between cursor-pointer">
           <img
             src={userImg}

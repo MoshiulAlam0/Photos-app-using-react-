@@ -16,10 +16,27 @@
     z-index: 1;
     backdrop-filter:blur(1px);
 }
-/* #gallery-con{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    column-gap: 2vmin;
-    row-gap: 2vmin;
+#gallery-con{
+    column-gap: 15px;
+    columns: auto;
+    column-width: 30vw;
+}
+.img_content{
+    opacity: 0;
+    transition: .6s;
+}
+#img_card:hover>.img_content{
+    opacity: 1;
+}
+@media (max-width: 665px) {
+    #gallery-con{
+        column-width: 100vw;
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+    #setting{
+        padding-left: 14px;
+        padding-right: 14px;
+    }
 
-} */
+}
