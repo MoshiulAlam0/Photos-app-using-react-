@@ -17,9 +17,12 @@
     backdrop-filter:blur(1px);
 }
 #gallery-con{
-    column-gap: 15px;
+    column-gap: 10px;
     columns: auto;
     column-width: 30vw;
+}
+#img_card{
+    transition: .4s;
 }
 .img_content{
     opacity: 0;
@@ -27,6 +30,30 @@
 }
 #img_card:hover>.img_content{
     opacity: 1;
+}
+
+.lodderDot:nth-child(2){
+animation-delay: 3s;
+}
+.lodderDot:nth-child(3){
+animation-delay: .6s;
+}
+.lodderDot{
+animation: animate 1s ease-in-out  infinite  alternate;
+}
+#lodding-text{
+    opacity: .2;
+    animation: ops 1s ease-in-out  infinite  alternate;
+}
+@keyframes animate {  
+to{
+    transform: translateY(-5px);
+}    
+}
+@keyframes ops {    
+to{
+    opacity: .8;
+}
 }
 @media (max-width: 665px) {
     #gallery-con{

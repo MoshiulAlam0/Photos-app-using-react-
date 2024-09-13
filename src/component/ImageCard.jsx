@@ -7,7 +7,7 @@ import { FiDownload } from "react-icons/fi";
 const ImageCard = ({ userImg, imgUrl, userName,  }) => {
   let defaultUserImg ='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXc5yOGyKuHNVoGQWWLMiioYs2BG0eJurWhg&s'
   return (
-    <div id="img_card" className="relative w-[100%] bg-[#bababa] mb-[15px] rounded-xl overflow-hidden">
+    <div id="img_card" className="relative w-[100%] bg-[#f0f0f0] mb-[10px] rounded-lg overflow-hidden ">
       <img src={imgUrl} alt="" className="w-full" />
       <div  className="img_content absolute top-2 flex  items-center justify-end gap-[4vmin] w-full text-[1.9rem] text-[#ffffffc9]  px-3">
         <span className="cursor-pointer hover:text-white">
