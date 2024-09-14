@@ -8,7 +8,8 @@ const MainPhotoCon = ({
   color,
   searchText,
   isPhotoFiend,
-  imgType,
+  photoTypeValue,
+  videoTypeVlaue,
   pageSize,
   stockValueSet,
   searchOrder,
@@ -39,7 +40,7 @@ const MainPhotoCon = ({
         stockValueSet("Photos");
         console.log("i am in the photo lode");
         let keyCode = "45929705-2b07f79792d4b03a2400490cc";
-        let url = `https://pixabay.com/api/?key=${keyCode}&q=${color}+${searchText}&image_type=${imgType}&per_page=${pageSize}&page=${page}&order=${searchOrder}`;
+        let url = `https://pixabay.com/api/?key=${keyCode}&q=${color}+${searchText}&image_type=${photoTypeValue}&per_page=${pageSize}&page=${page}&order=${searchOrder}`;
         let res = await fetch(url);
         let data = await res.json();
         setmainApiData(data);
@@ -48,7 +49,7 @@ const MainPhotoCon = ({
         stockValueSet("Videos");
         console.log("i am in the video lode");
         let keyCode = "45929705-2b07f79792d4b03a2400490cc";
-        let url = `https://pixabay.com/api/videos/?key=${keyCode}&q={color}+${searchText}&per_page=${pageSize}&page=${page}&order=${searchOrder}`;
+        let url = `https://pixabay.com/api/videos/?key=${keyCode}&q={color}+${searchText}&video_type=${videoTypeVlaue}&per_page=${pageSize}&page=${page}&order=${searchOrder}`;
         let res = await fetch(url);
         let data = await res.json();
         setmainApiData(data);
@@ -69,33 +70,35 @@ const MainPhotoCon = ({
   }
 
   // data lode for one time
-  useEffect(() => {
-    data_Load();
-  }, []);
+  // useEffect(() => {
+  //   data_Load();
+  // }, []);
 
   // data lode to depande on states
   useEffect(() => {
     data_Load();
-  }, [page, searchText, searchOrder, isPhotoFiend]);
+  }, [page, searchText, searchOrder, isPhotoFiend, photoTypeValue, videoTypeVlaue]);
 
   // console.log(searchText);
   //  console.log(searchOrder);
   // console.log(isPhotoFiend)
+  // console.log(videoTypeVlaue)
+  // console.log(photoTypeValue)
   
   // render Element
   return (
     <div id="gallery-con" className="w-full px-8 pb-28 relative">
       {mainApiData.total !== 0 ? (
         mainApiData.hits.map((e, i) => {
-          return !isVideoRender ? (
+        //  console.log(e)
+          return !isVideoRender ? ( // for photo render 
             <ImageCard
               key={i}
               userName={e.user}
               userImg={e.userImageURL}
               imgUrl={e.largeImageURL}
             />
-          ) : (
-            // console.log(e.userImageURL)
+          ) : (                       // for video render 
             <ImageCard
               key={i}
               userName={e.user}
@@ -139,6 +142,7 @@ MainPhotoCon.propTypes = {
 MainPhotoCon.defaultProps = {
   color: "colorfull",
   searchText: "wallpaper",
-  imgType: "photo",
-  pageSize: 50,
+  photoTypeValue: "photo",
+  videoTypeVlaue: 'film',
+  pageSize: 10,
 };

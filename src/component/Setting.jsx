@@ -5,15 +5,28 @@ import { FaPencil } from "react-icons/fa6";
 import { BsVectorPen } from "react-icons/bs";
 
 import { IoIosCheckmark } from "react-icons/io"; //chack mark
-import { MyContext } from "../context/All_context";
+import { MyContext } from "../context/All_context"; // context
+// import Img_Video_Type from "./sunComonent/Img_Video_Type";
+import PhotoType from "./sunComonent/PhotoType";
+import VideoType from "./sunComonent/VideoType";
 
 const Setting = ({ stockValue }) => {
   //context
-  const {orderState } = useContext(MyContext);
+  const { videoOrPhotoSearchState, orderState, typeState } =
+    useContext(MyContext);
 
-  const [text, settext] = useState("latest");
+  const [text, settext] = useState("popular");
   const [display, setdisplay] = useState("none");
-  const [activeBg, setactiveBg] = useState("#bababa27");
+//  for photo 
+  const [activeBg1, setactiveBg1] = useState("white"); 
+  const [activeBg2, setactiveBg2] = useState("green");
+  const [activeBg3, setactiveBg3] = useState("white");
+  const [activeBg4, setactiveBg4] = useState("white");
+  // for video 
+  const [activeBg5, setactiveBg5] = useState("white"); 
+  const [activeBg6, setactiveBg6] = useState("green");
+  const [activeBg7, setactiveBg7] = useState("white");
+
   const itemConRef = useRef(null);
   let obj = {
     all: <MdDoneAll />,
@@ -21,29 +34,84 @@ const Setting = ({ stockValue }) => {
     illustration: <FaPencil />,
     vector: <BsVectorPen />,
   };
-  let filter = ["all", "photo", "illustration", "vector"];
   return (
     <div id="setting" className="p-8 ">
+      {/* type for photo  */}
       <div
+        style={{
+          display: videoOrPhotoSearchState.isPhotoSearch ? "flex" : "none",
+        }}
         ref={itemConRef}
         className="flex items-center justify-center gap-[3vmin] capitalize flex-wrap"
       >
-        {filter.map((e, i) => {
-          return (
-            <p
-              // onClick={(item) =>{
-              //   setactiveBg(activeBg==='#bababa27'?'#00c4214b':'#bababa27')
-              //   // console.log(itemConRef.current.chilldren[i].style.backgroundColor = bg)
-              //   console.log(itemConRef.current.children[i].style.backgroundColor = activeBg)
-              // } }
-              className={`px-3 py-1 transition-all font-extralight hover:bg-[#00c4214b] cursor-pointer rounded-full bg-[#bababa27] text-[1.2rem] flex items-center justify-center gap-2`}
-              key={i}
-            >
-              <span>{obj[e]}</span>
-              <span className="">{e}</span>
-            </p>
-          );
-        })}
+        <PhotoType
+          targetBg={activeBg1}
+          settargetBg={setactiveBg1}
+          setBg1={setactiveBg2}
+          setBg2={setactiveBg3}
+          setBg3={setactiveBg3}
+          typeText={"all"}
+          icon={obj.all}
+        />
+        <PhotoType
+          targetBg={activeBg2}
+          settargetBg={setactiveBg2}
+          setBg1={setactiveBg1}
+          setBg2={setactiveBg3}
+          setBg3={setactiveBg4}
+          typeText={"photo"}
+          icon={obj.photo}
+        />
+        <PhotoType
+          targetBg={activeBg3}
+          settargetBg={setactiveBg3}
+          setBg1={setactiveBg1}
+          setBg2={setactiveBg2}
+          setBg3={setactiveBg4}
+          typeText={"illustration"}
+          icon={obj.illustration}
+        />
+        <PhotoType
+          targetBg={activeBg4}
+          settargetBg={setactiveBg4}
+          setBg1={setactiveBg1}
+          setBg2={setactiveBg2}
+          setBg3={setactiveBg3}
+          typeText={"vector"}
+          icon={obj.vector}
+        />
+      </div>
+      {/* type for video  */}
+      <div
+        className="flex items-center justify-center gap-[3vmin] capitalize flex-wrap"
+        style={{
+          display: !videoOrPhotoSearchState.isPhotoSearch ? "flex" : "none",
+        }}
+      >
+        <VideoType
+          targetBg={activeBg5}
+          settargetBg={setactiveBg5}
+          setBg1={setactiveBg6}
+          setBg2={setactiveBg7}
+          typeText={"all"}
+          icon={obj.all}
+        />
+        <VideoType
+          targetBg={activeBg6}
+          settargetBg={setactiveBg6}
+          setBg1={setactiveBg5}
+          setBg2={setactiveBg7}
+          typeText={"flim"}
+          icon={obj.all}
+        />
+        <VideoType
+          targetBg={activeBg7}
+          settargetBg={setactiveBg7}
+          setBg1={setactiveBg5}
+          setBg2={setactiveBg6}
+          typeText={"animation"}
+          icon={obj.all}
+        />
       </div>
       <div className="flex items-center justify-between mt-14">
         <h1 className="text-[2rem] font-medium leading-none">
