@@ -1,21 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaRegHeart } from "react-icons/fa";
 
 import { IoBagAddOutline } from "react-icons/io5";
 import { FiDownload } from "react-icons/fi";
+import Video from "./sunComonent/Video";
 
 const ImageCard = ({ userImg, imgUrl, userName, videoUrl }) => {
+  // const [videoPlay, setvideoPlay] = useState();
+  
   let defaultUserImg =
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXc5yOGyKuHNVoGQWWLMiioYs2BG0eJurWhg&s";
   return (
     <div
       id="img_card"
-      className="relative w-[100%] bg-[#f0f0f0] mb-[10px] rounded-lg overflow-hidden "
+      className="relative w-[100%] bg-[#f0f0f0] mb-[10px] rounded-lg overflow-hidden hover:cursor-zoom-in"
     >
       {imgUrl ? (
         <img src={imgUrl} alt="" className="w-full" />
       ) : (
-        <video src={videoUrl} loop muted></video>
+        <Video videoUrl={videoUrl}/>
       )}
       <div className="img_content absolute top-2 flex  items-center justify-end gap-[4vmin] w-full text-[1.9rem] text-[#ffffffc9]  px-3">
         <span className="cursor-pointer hover:text-white">

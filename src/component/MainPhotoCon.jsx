@@ -11,13 +11,13 @@ const MainPhotoCon = ({
   imgType,
   pageSize,
   stockValueSet,
+  searchOrder,
 }) => {
   const [page, setpage] = useState(1);
   const myState = useContext(MyContext);
   const [isVideoRender, setisVideoRender] = useState(false);
   const [lodderDisplay, setlodderDisplay] = useState("block");
   const [errorDisplay, seterrorDisplay] = useState("none");
-
 
   // api data storage :
   const [mainApiData, setmainApiData] = useState({
@@ -29,38 +29,41 @@ const MainPhotoCon = ({
   // for fetch--> (function):
   async function data_Load() {
     try {
-      setlodderDisplay("block"); /// show loder 
+      setlodderDisplay("block"); /// show loder
       setmainApiData({
         total: 0,
         totalHits: 0,
         hits: [],
       });
       if (isPhotoFiend) {
-        stockValueSet('Photos')
-        console.log('i am in the photo lode')
+        stockValueSet("Photos");
+        console.log("i am in the photo lode");
         let keyCode = "45929705-2b07f79792d4b03a2400490cc";
-        let url = `https://pixabay.com/api/?key=${keyCode}&q=${color}+${searchText}&image_type=${imgType}&per_page=${pageSize}&page=${page}`;
+        let url = `https://pixabay.com/api/?key=${keyCode}&q=${color}+${searchText}&image_type=${imgType}&per_page=${pageSize}&page=${page}&order=${searchOrder}`;
         let res = await fetch(url);
         let data = await res.json();
         setmainApiData(data);
-        setisVideoRender(false)
+        setisVideoRender(false);
       } else {
-        stockValueSet('Videos')
-        console.log('i am in the video lode')
+        stockValueSet("Videos");
+        console.log("i am in the video lode");
         let keyCode = "45929705-2b07f79792d4b03a2400490cc";
-        let url = `https://pixabay.com/api/videos/?key=${keyCode}&q={color}+${searchText}&per_page=${pageSize}&page=${page}`;
+        let url = `https://pixabay.com/api/videos/?key=${keyCode}&q={color}+${searchText}&per_page=${pageSize}&page=${page}&order=${searchOrder}`;
         let res = await fetch(url);
         let data = await res.json();
         setmainApiData(data);
         setisVideoRender(true);
       }
       setlodderDisplay("none");
-      seterrorDisplay('none')
+      seterrorDisplay("none");
     } catch (error) {
-      {setTimeout(() => {    /// aftter 2sec hide loder
-        setlodderDisplay('none')
-        seterrorDisplay('block')
-      }, 5000)}
+      {
+        setTimeout(() => {
+          /// aftter 2sec hide loder
+          setlodderDisplay("none");
+          seterrorDisplay("block");
+        }, 5000);
+      }
       console.warn("error khaice ..");
     }
   }
@@ -73,8 +76,12 @@ const MainPhotoCon = ({
   // data lode to depande on states
   useEffect(() => {
     data_Load();
-  }, [page, searchText]);
-console.log(searchText)
+  }, [page, searchText, searchOrder, isPhotoFiend]);
+
+  // console.log(searchText);
+  //  console.log(searchOrder);
+  // console.log(isPhotoFiend)
+  
   // render Element
   return (
     <div id="gallery-con" className="w-full px-8 pb-28 relative">
@@ -98,7 +105,10 @@ console.log(searchText)
           );
         })
       ) : (
-        <h1 style={{display: errorDisplay}} className="text-center text-[#bababa] text-[5vmin] absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2">
+        <h1
+          style={{ display: errorDisplay }}
+          className="text-center text-[#bababa] text-[5vmin] absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2"
+        >
           Something is wrong . <br /> we are so sorry !!.
         </h1>
       )}
@@ -127,8 +137,8 @@ MainPhotoCon.propTypes = {
   category: PropTypes.string,
 };
 MainPhotoCon.defaultProps = {
-  color: "all",
-  searchText: "new",
+  color: "colorfull",
+  searchText: "wallpaper",
   imgType: "photo",
-  pageSize: 10,
+  pageSize: 50,
 };

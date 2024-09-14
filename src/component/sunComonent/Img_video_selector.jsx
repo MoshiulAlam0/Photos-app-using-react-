@@ -3,7 +3,6 @@ import { IoIosArrowDown } from "react-icons/io";
 import { MdPhotoLibrary } from "react-icons/md";
 import { BiSolidVideos } from "react-icons/bi";
 import { MyContext } from "../../context/All_context";
-import { Link } from "react-router-dom";
 
 
 const Img_video_selector = ({setInputValue}) => {
@@ -50,7 +49,7 @@ const Img_video_selector = ({setInputValue}) => {
                 >
                   <span className="text-[1.5rem]"><MdPhotoLibrary/></span>  <span className="video-photo-text">photo</span> 
                 </p>
-                <Link to={'/search'}
+                <p 
                     className="py-2 flex items-center justify-center gap-[2vmin] hover:bg-[#ececec] hover:text-[#00c421] cursor-pointer"
                     onClick={(e) =>{
                         settext("video")
@@ -59,7 +58,7 @@ const Img_video_selector = ({setInputValue}) => {
                     }}
                 >
                   <spa className="text-[1.5rem]"n><BiSolidVideos/></spa>  <span className="video-photo-text">video</span>
-                </Link>
+                </p>
             </div>
         </div>
     );

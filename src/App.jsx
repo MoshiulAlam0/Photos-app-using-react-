@@ -6,34 +6,40 @@ import Setting from "./component/Setting";
 import MainPhotoCon from "./component/MainPhotoCon";
 import { MyContext } from "./context/All_context";
 
-import { Routes, Route } from 'react-router-dom';
-{
-  /* <Routes>
-  <Route path="/" element={<h1>this is the home page</h1>} />
-  <Route path="/about" element={<h1>this is the about page</h1>} />
-  <Route path="/works" element={<h1>this is the works page</h1>} />
-</Routes> */
-}
+import { Routes, Route } from "react-router-dom";
 
 const App = () => {
-  const [searchValue, setsearchValue] = useState();
-  const [isPhotoSearch, setisPhotoSearch] = useState(true);
-  const [stockText, setstockText] = useState("Photos");
-  console.log(searchValue)
+  const [searchValue, setsearchValue] = useState();   /// for change Input Search Value.
+  const [isPhotoSearch, setisPhotoSearch] = useState(true); //for search / fiend by Photo / Video.
+  const [stockText, setstockText] = useState("Photos");   /// for change free stock text Photo / Video.
+  const [order, setorder] = useState("popular"); /// for change latest / popular.
+  // const [switchPhotoToVideo, setswitchPhotoToVideo] = useState();
+
+
   return (
     <main id="main" suppressHydrationWarning>
       <MyContext.Provider
         value={{
           searchState: { searchValue, setsearchValue },
-          videoOrPhotoSearchState:{isPhotoSearch, setisPhotoSearch},
+          videoOrPhotoSearchState: { isPhotoSearch, setisPhotoSearch },
+          orderState: {order, setorder},
         }}
       >
         <Head />
-        <Setting stockValue={stockText}/>
-        {/* <MainPhotoCon/> */}
+        <Setting stockValue={stockText} />
         <Routes>
           {/* <Route path="/" element={<MainPhotoCon/>} /> */}
-          <Route path="/" element={<MainPhotoCon searchText={searchValue} isPhotoFiend={isPhotoSearch} stockValueSet={setstockText}/>} />
+          <Route
+            path="/"
+            element={
+              <MainPhotoCon
+                searchText={searchValue}
+                isPhotoFiend={isPhotoSearch}
+                stockValueSet={setstockText}
+                searchOrder={order}
+              />
+            }
+          />
         </Routes>
       </MyContext.Provider>
     </main>
