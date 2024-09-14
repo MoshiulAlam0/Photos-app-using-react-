@@ -17,20 +17,23 @@ import { Routes, Route } from 'react-router-dom';
 
 const App = () => {
   const [searchValue, setsearchValue] = useState();
+  const [isPhotoSearch, setisPhotoSearch] = useState(true);
+  const [stockText, setstockText] = useState("Photos");
+  console.log(searchValue)
   return (
     <main id="main" suppressHydrationWarning>
       <MyContext.Provider
         value={{
           searchState: { searchValue, setsearchValue },
+          videoOrPhotoSearchState:{isPhotoSearch, setisPhotoSearch},
         }}
       >
         <Head />
-        <Setting />
+        <Setting stockValue={stockText}/>
         {/* <MainPhotoCon/> */}
         <Routes>
-          <Route path="/" element={<MainPhotoCon/>} />
-          <Route path="/search" element={<MainPhotoCon searchText={searchValue}/>} />
-          <Route path="/about" element={<h1>this is the about page</h1>} />
+          {/* <Route path="/" element={<MainPhotoCon/>} /> */}
+          <Route path="/" element={<MainPhotoCon searchText={searchValue} isPhotoFiend={isPhotoSearch} stockValueSet={setstockText}/>} />
         </Routes>
       </MyContext.Provider>
     </main>

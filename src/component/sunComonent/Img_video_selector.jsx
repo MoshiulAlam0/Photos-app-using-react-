@@ -1,13 +1,18 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import { MdPhotoLibrary } from "react-icons/md";
-import { BiSolidVideos, BiVideo } from "react-icons/bi";
+import { BiSolidVideos } from "react-icons/bi";
+import { MyContext } from "../../context/All_context";
+import { Link } from "react-router-dom";
 
 
-const Img_video_selector = () => {
+const Img_video_selector = ({setInputValue}) => {
     const [text, settext] = useState("photo");
     const [display, setdisplay] = useState("none");
     const [roll, setroll] = useState(0);
+    //context 
+    const {videoOrPhotoSearchState} = useContext(MyContext)
+    // console.log(videoOrPhotoSearchState)
     return (
         <div
             className="relative bg-white text-black rounded-l-xl hover:rounded-none transition-all  py-3 text-center capitalize"
@@ -37,16 +42,24 @@ const Img_video_selector = () => {
             >
                 <p
                     className="py-2 flex items-center justify-center gap-[2vmin] hover:bg-[#ececec] hover:text-[#00c421] cursor-pointer"
-                    onClick={(e) => settext("photo")}
+                    onClick={(e) =>{
+                        settext("photo")
+                        videoOrPhotoSearchState.setisPhotoSearch(true)
+                        setInputValue('')
+                    }}
                 >
                   <span className="text-[1.5rem]"><MdPhotoLibrary/></span>  <span className="video-photo-text">photo</span> 
                 </p>
-                <p
+                <Link to={'/search'}
                     className="py-2 flex items-center justify-center gap-[2vmin] hover:bg-[#ececec] hover:text-[#00c421] cursor-pointer"
-                    onClick={(e) => settext("video")}
+                    onClick={(e) =>{
+                        settext("video")
+                        videoOrPhotoSearchState.setisPhotoSearch(false)
+                        setInputValue('')
+                    }}
                 >
                   <spa className="text-[1.5rem]"n><BiSolidVideos/></spa>  <span className="video-photo-text">video</span>
-                </p>
+                </Link>
             </div>
         </div>
     );
