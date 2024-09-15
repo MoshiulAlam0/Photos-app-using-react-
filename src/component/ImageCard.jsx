@@ -5,9 +5,18 @@ import { IoBagAddOutline } from "react-icons/io5";
 import { FiDownload } from "react-icons/fi";
 import Video from "./sunComonent/Video";
 
-const ImageCard = ({ userImg, imgUrl, userName, videoUrl }) => {
+const ImageCard = ({ userImg, imgUrl, userName, videoUrl, pageUrl }) => {
   // const [videoPlay, setvideoPlay] = useState();
-  
+  // const downlodeFile =(url)=>{
+  //   console.log(url)
+    
+  //   const a = document.createElement('a')
+  //   a.setAttribute("href", url)
+  //   a.setAttribute("downlode", 'pixa')
+  //   console.log(a)
+  // }
+  console.log(imgUrl.split('/').pop())
+
   let defaultUserImg =
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXc5yOGyKuHNVoGQWWLMiioYs2BG0eJurWhg&s";
   return (
@@ -38,6 +47,9 @@ const ImageCard = ({ userImg, imgUrl, userName, videoUrl }) => {
           />
           <p className="text-[.9rem] ">{userName}</p>
         </div>
+        {/* <p  onClick={()=>downlodeFile(imgUrl)} className="text-[1.9rem] hover:text-white  cursor-pointer">
+          <FiDownload />
+        </p> */}
         <p className="text-[1.9rem] hover:text-white  cursor-pointer">
           <FiDownload />
         </p>
