@@ -9,11 +9,11 @@ const Video = ({ videoUrl }) => {
       className="relative"
       onMouseOver={() => {
         setplayBtnDisplay("none");
-        videoRef.current.play()
+        // videoRef.current.play()
       }}
       onMouseOut={() => {
         setplayBtnDisplay("block");
-        videoRef.current.pause()
+        // videoRef.current.pause()
       }}
     >
       <video ref={videoRef} src={videoUrl} loop muted></video>

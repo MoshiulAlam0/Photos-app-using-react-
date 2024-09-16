@@ -45,6 +45,19 @@ animation: animate 1s ease-in-out  infinite  alternate;
     opacity: .2;
     animation: ops 1s ease-in-out  infinite  alternate;
 }
+
+.showDownlodeText{
+    color: rgb(255, 255, 255);
+    padding: 1px 6px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 50px;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    background-color: #969696d3;
+}
+
 @keyframes animate {  
 to{
     transform: translateY(-5px);

@@ -58,6 +58,7 @@ const MainPhotoCon = ({
       setlodderDisplay("none");
       seterrorDisplay("none");
     } catch (error) {
+      seterrorDisplay("none");
       {
         setTimeout(() => {
           /// aftter 2sec hide loder
@@ -69,18 +70,13 @@ const MainPhotoCon = ({
     }
   }
 
-  // data lode for one time
-  // useEffect(() => {
-  //   data_Load();
-  // }, []);
-
   // data lode to depande on states
   useEffect(() => {
     data_Load();
   }, [page, searchText, searchOrder, isPhotoFiend, photoTypeValue, videoTypeVlaue]);
 
   // console.log(searchText);
-  //  console.log(searchOrder);
+  // console.log(searchOrder);
   // console.log(isPhotoFiend)
   // console.log(videoTypeVlaue)
   // console.log(photoTypeValue)
@@ -90,7 +86,6 @@ const MainPhotoCon = ({
     <div id="gallery-con" className="w-full px-8 pb-28 relative">
       {mainApiData.total !== 0 ? (
         mainApiData.hits.map((e, i) => {
-        //  console.log(e)
           return !isVideoRender ? ( // for photo render 
             <ImageCard
               key={i}

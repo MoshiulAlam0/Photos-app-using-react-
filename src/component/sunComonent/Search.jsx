@@ -9,11 +9,8 @@ const Search = () => {
   const inputRef = useRef(null);
   const { searchState } = useContext(MyContext);
   const [fieldValue, setfieldValue] = useState();
-  // console.log("input value :", fieldValue);
-  // const [storedInputValue, setstoredInputValue] = useState(fieldValue);
-  // console.log("stored value :", storedInputValue);
   return (
-    <div id="search-con" className="w-full text-white relative z-10 px-5">
+    <div id="search-con" className="w-full mt-24 text-white relative z-10 px-5">
       <h1 className="text-center capitalize text-[3rem] font-semibold mb-4 px-3 leading-none">
         images and video collection
       </h1>

@@ -51,4 +51,7 @@
         background: rgba(0, 5, 8, 0.856);
         z-index: -1;
     }
+    .img_content{
+        opacity: .9 !important;
+    }
 }
