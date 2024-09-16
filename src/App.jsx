@@ -8,6 +8,7 @@ import { MyContext } from "./context/All_context";
 
 import { Routes, Route } from "react-router-dom";
 import NavBar from "./component/sunComonent/NavBar";
+import MyCollection from "./component/MyCollection";
 
 const App = () => {
   const [searchValue, setsearchValue] = useState(); /// for change (Input )Search Value.
@@ -16,6 +17,12 @@ const App = () => {
   const [photoType, setphotoType] = useState(); ///for set video and photo type like (all, photo, vector, etc).
   const [videoType, setvideoType] = useState(); ///for set video and photo type like (all, photo, vector, etc).
   const [order, setorder] = useState("popular"); /// for change (latest / popular).
+  const [myCollection, setmyCollection] = useState({
+    photo:[],
+    video:[],
+  });
+  console.log(myCollection)
+
 
   return (
     <main id="main" className="relative" suppressHydrationWarning>
@@ -25,11 +32,11 @@ const App = () => {
           videoOrPhotoSearchState: { isPhotoSearch, setisPhotoSearch },
           orderState: { order, setorder },
           typeState: { photoType, setphotoType, videoType, setvideoType },
+          collectionState:{myCollection, setmyCollection}
         }}
       >
         <NavBar />
         <Routes>
-          {/* <Route path="/" element={<MainPhotoCon/>} /> */}
           <Route
             path="/"
             element={
@@ -45,6 +52,12 @@ const App = () => {
                   searchOrder={order}
                 />
               </>
+            }
+          />
+          <Route
+            path="/myCollection"
+            element={
+              <MyCollection/>
             }
           />
         </Routes>

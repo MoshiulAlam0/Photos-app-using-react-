@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { FaRegHeart } from "react-icons/fa";
 
 import { IoBagAddOutline } from "react-icons/io5";
@@ -6,6 +6,8 @@ import { FiDownload } from "react-icons/fi";
 import Video from "./sunComonent/Video";
 
 import "react-toastify/dist/ReactToastify.css";
+import { MyContext } from "../context/All_context";
+import MyCollection from "./MyCollection";
 
 const ImageCard = ({
   userImg,
@@ -14,12 +16,14 @@ const ImageCard = ({
   videoUrl,
   mainPageUrl,
   downlodeUrl,
+  id,
 }) => {
+  const { collectionState } = useContext(MyContext); // context
+
   const [isLike, setisLike] = useState(false);
   const [isDownlode, setisDownlode] = useState(false);
 
   const cardRef = useRef(null);
-
 
   /**downlode function*/
   const downlodeFile = async (url) => {
@@ -50,7 +54,43 @@ const ImageCard = ({
     pEle.remove();
     setisDownlode(false);
   };
-  let defaultUserImg ="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXc5yOGyKuHNVoGQWWLMiioYs2BG0eJurWhg&s";
+
+  /* add collection function : */
+  const addCollectionFunc = (cardId) => {
+    if (imgUrl) {
+      addToLocalStorage("photoCollection", cardId);
+      if (!collectionState.myCollection.photo.includes(cardId)) {
+        collectionState.myCollection.photo.push(cardId);
+        console.log(collectionState.myCollection.photo);
+      }
+    } else {
+      addToLocalStorage("videoCollection", cardId);
+
+      if (!collectionState.myCollection.video.includes(cardId)) {
+        collectionState.myCollection.video.push(cardId);
+        console.log(collectionState.myCollection.video);
+      }
+    }
+
+    /* add collection data  to localstorage function  */
+    function addToLocalStorage(key, cardId) {
+      if (localStorage.getItem(key)) {
+        console.log(true);
+        let storedData = JSON.parse(localStorage.getItem(key));
+        if (!storedData.includes(cardId)) {
+          let newData = [...storedData, cardId];
+          console.log(newData);
+          localStorage.setItem(key, JSON.stringify(newData));
+        }
+      } else {
+        localStorage.setItem(key, "[ ]");
+      }
+    }
+    // collectionState.setmyCollection(collectionState.myCollection.arr.push(9999))
+    // console.log()
+  };
+  let defaultUserImg =
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXc5yOGyKuHNVoGQWWLMiioYs2BG0eJurWhg&s";
   return (
     <div
       ref={cardRef}
@@ -79,18 +119,23 @@ const ImageCard = ({
       )}
 
       <div className="img_content absolute top-2 flex  items-center justify-end gap-[4vmin] w-full text-[1.9rem] text-[#ffffffc9]  px-3">
-        <span style={{color: isLike?"red":'white'}} className="cursor-pointer hover:text-white"
-        onClick={()=>{
-          if(isLike){
-            setisLike(false)
-          }else{
-            setisLike(true)
-          }
-        }}
+        <span
+          style={{ color: isLike ? "red" : "white" }}
+          className="cursor-pointer hover:text-white"
+          onClick={() => {
+            if (isLike) {
+              setisLike(false);
+            } else {
+              setisLike(true);
+            }
+          }}
         >
           <FaRegHeart />
         </span>
-        <span className="cursor-pointer hover:text-white">
+        <span
+          className="cursor-pointer hover:text-white"
+          onClick={() => addCollectionFunc(id)}
+        >
           <IoBagAddOutline />
         </span>
       </div>

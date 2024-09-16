@@ -94,6 +94,7 @@ const MainPhotoCon = ({
               imgUrl={e.largeImageURL}
               downlodeUrl={e.largeImageURL}
               mainPageUrl={e.pageURL}
+              id={e.id}
             />
           ) : (                       // for video render 
             <ImageCard
@@ -103,6 +104,7 @@ const MainPhotoCon = ({
               videoUrl={e.videos.large.url}
               downlodeUrl={e.videos.large.url}
               mainPageUrl={e.pageURL}
+              id={e.id}
             />
           );
         })
