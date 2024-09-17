@@ -18,7 +18,7 @@ const ImageCard = ({
   downlodeUrl,
   id,
 }) => {
-  const { collectionState } = useContext(MyContext); // context
+  // const { collectionState } = useContext(MyContext); // context
 
   const [isLike, setisLike] = useState(false);
   const [isDownlode, setisDownlode] = useState(false);
@@ -56,30 +56,26 @@ const ImageCard = ({
   };
 
   /* add collection function : */
-  const addCollectionFunc = (cardId) => {
+  const addCollectionFunc = async (cardId) => {
     if (imgUrl) {
-      addToLocalStorage("photoCollection", cardId);
-      if (!collectionState.myCollection.photo.includes(cardId)) {
-        collectionState.myCollection.photo.push(cardId);
-        console.log(collectionState.myCollection.photo);
-      }
+      let url = `https://pixabay.com/api/?key=45929705-2b07f79792d4b03a2400490cc&id=${id}`;
+      const res = await fetch(url)
+      const data = await res.json();
+      addToLocalStorage("photoCollection", data.hits[0]);
     } else {
-      addToLocalStorage("videoCollection", cardId);
-
-      if (!collectionState.myCollection.video.includes(cardId)) {
-        collectionState.myCollection.video.push(cardId);
-        console.log(collectionState.myCollection.video);
-      }
+      // addToLocalStorage("videoCollection", cardId);
+      let url = `https://pixabay.com/api/videos/?key=45929705-2b07f79792d4b03a2400490cc&id=${id}`
+      const res = await fetch(url)
+      const data = await res.json();
+      addToLocalStorage("videoCollection", data.hits[0]);
     }
 
     /* add collection data  to localstorage function  */
     function addToLocalStorage(key, cardId) {
       if (localStorage.getItem(key)) {
-        console.log(true);
         let storedData = JSON.parse(localStorage.getItem(key));
         if (!storedData.includes(cardId)) {
           let newData = [...storedData, cardId];
-          console.log(newData);
           localStorage.setItem(key, JSON.stringify(newData));
         }
       } else {

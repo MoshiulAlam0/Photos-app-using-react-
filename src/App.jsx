@@ -10,6 +10,7 @@ import { Routes, Route } from "react-router-dom";
 import NavBar from "./component/sunComonent/NavBar";
 import MyCollection from "./component/MyCollection";
 
+
 const App = () => {
   const [searchValue, setsearchValue] = useState(); /// for change (Input )Search Value.
   const [isPhotoSearch, setisPhotoSearch] = useState(true); //for (search / fiend) by Photo / Video.
@@ -17,11 +18,8 @@ const App = () => {
   const [photoType, setphotoType] = useState(); ///for set video and photo type like (all, photo, vector, etc).
   const [videoType, setvideoType] = useState(); ///for set video and photo type like (all, photo, vector, etc).
   const [order, setorder] = useState("popular"); /// for change (latest / popular).
-  const [myCollection, setmyCollection] = useState({
-    photo:[],
-    video:[],
-  });
-  console.log(myCollection)
+  // const [collectionDepandency, setcollectionDepandency] = useState(0);
+  // console.log(collectionDepandency)
 
 
   return (
@@ -32,7 +30,7 @@ const App = () => {
           videoOrPhotoSearchState: { isPhotoSearch, setisPhotoSearch },
           orderState: { order, setorder },
           typeState: { photoType, setphotoType, videoType, setvideoType },
-          collectionState:{myCollection, setmyCollection}
+          // collectionState:{collectionDepandency, setcollectionDepandency}
         }}
       >
         <NavBar />

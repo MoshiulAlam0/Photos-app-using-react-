@@ -16,7 +16,7 @@
     z-index: 1;
     backdrop-filter:blur(1px);
 }
-#gallery-con{
+#gallery-con , .my-galery{
     column-gap: 10px;
     columns: auto;
     column-width: 30vw;
@@ -56,6 +56,12 @@ animation: animate 1s ease-in-out  infinite  alternate;
     top: 2px;
     left: 2px;
     background-color: #969696d3;
+}
+#collection-btn-con{
+    display: none;
+}
+#collection-main-btn-con:hover>#collection-btn-con{
+    display: block;
 }
 
 @keyframes animate {  
