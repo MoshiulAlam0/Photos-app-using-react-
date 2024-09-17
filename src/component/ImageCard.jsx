@@ -5,9 +5,8 @@ import { IoBagAddOutline } from "react-icons/io5";
 import { FiDownload } from "react-icons/fi";
 import Video from "./sunComonent/Video";
 
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { MyContext } from "../context/All_context";
-import MyCollection from "./MyCollection";
 
 const ImageCard = ({
   userImg,
@@ -17,6 +16,7 @@ const ImageCard = ({
   mainPageUrl,
   downlodeUrl,
   id,
+  fromCollection,
 }) => {
   // const { collectionState } = useContext(MyContext); // context
 
@@ -43,7 +43,6 @@ const ImageCard = ({
     const a = document.createElement("a");
     a.href = downLlink;
     a.download = "pixaFile";
-    console.log(a);
     document.body.appendChild(a);
 
     a.click();
@@ -59,32 +58,50 @@ const ImageCard = ({
   const addCollectionFunc = async (cardId) => {
     if (imgUrl) {
       let url = `https://pixabay.com/api/?key=45929705-2b07f79792d4b03a2400490cc&id=${id}`;
-      const res = await fetch(url)
+      const res = await fetch(url);
       const data = await res.json();
-      addToLocalStorage("photoCollection", data.hits[0]);
+      addToLocalStorage("photoCollection", data.hits[0], "photosId", cardId);
     } else {
-      // addToLocalStorage("videoCollection", cardId);
-      let url = `https://pixabay.com/api/videos/?key=45929705-2b07f79792d4b03a2400490cc&id=${id}`
-      const res = await fetch(url)
+      let url = `https://pixabay.com/api/videos/?key=45929705-2b07f79792d4b03a2400490cc&id=${id}`;
+      const res = await fetch(url);
       const data = await res.json();
-      addToLocalStorage("videoCollection", data.hits[0]);
+      addToLocalStorage("videoCollection", data.hits[0], "videosId", cardId);
     }
-
-    /* add collection data  to localstorage function  */
-    function addToLocalStorage(key, cardId) {
-      if (localStorage.getItem(key)) {
-        let storedData = JSON.parse(localStorage.getItem(key));
-        if (!storedData.includes(cardId)) {
-          let newData = [...storedData, cardId];
-          localStorage.setItem(key, JSON.stringify(newData));
-        }
-      } else {
-        localStorage.setItem(key, "[ ]");
-      }
-    }
-    // collectionState.setmyCollection(collectionState.myCollection.arr.push(9999))
-    // console.log()
   };
+  /* set  data  to localstorage function  */
+  function addToLocalStorage(key, value, idKey, cardId) {
+    if (localStorage.getItem(key) && localStorage.getItem(idKey)) {
+      // jodi data and id dui tai thake
+
+      let storedCollections = JSON.parse(localStorage.getItem(key)); // get localstored data
+      let storedIds = JSON.parse(localStorage.getItem(idKey)); // get localstored data
+
+      if (!storedIds.includes(cardId)) {
+        // jodi card ar id na thake the id set koro and data set kore
+
+        let newData = [...storedCollections, value]; // set old data and new data
+        localStorage.setItem(key, JSON.stringify(newData)); // set old data and new data
+
+        let newIds = [...storedIds, cardId]; // set old data and new data
+        localStorage.setItem(idKey, JSON.stringify(newIds)); // set old data and new data
+
+        toast.success("added to you collection", {
+          position: "top-center",
+          autoClose: 1000,
+        });
+      } else {  // all ready jodi id thake
+        toast.warn("all ready exeisted !", {
+          position: "top-center",
+          autoClose: 1000,
+        });
+      }
+    } else {
+      // jodi localstorage a ay nam a  kono key and value na thake the set koro
+      localStorage.setItem(key, "[ ]");  
+      localStorage.setItem(idKey, "[ ]");
+    }
+  }
+
   let defaultUserImg =
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXc5yOGyKuHNVoGQWWLMiioYs2BG0eJurWhg&s";
   return (
@@ -114,7 +131,10 @@ const ImageCard = ({
         </div>
       )}
 
-      <div className="img_content absolute top-2 flex  items-center justify-end gap-[4vmin] w-full text-[1.9rem] text-[#ffffffc9]  px-3">
+      <div
+        style={{ display: fromCollection ? "none" : "flex" }}
+        className="img_content absolute top-2 flex  items-center justify-end gap-[4vmin] w-full text-[1.9rem] text-[#ffffffc9]  px-3"
+      >
         <span
           style={{ color: isLike ? "red" : "white" }}
           className="cursor-pointer hover:text-white"
@@ -158,6 +178,7 @@ const ImageCard = ({
           <FiDownload />
         </p>
       </div>
+      <ToastContainer />
     </div>
   );
 };

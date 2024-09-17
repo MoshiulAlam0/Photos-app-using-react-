@@ -14,6 +14,7 @@ const CollectionCon = ({ data }) => {
             downlodeUrl={e.largeImageURL}
             mainPageUrl={e.pageURL}
             id={e.id}
+            fromCollection={true}
           />
         );
       }) :

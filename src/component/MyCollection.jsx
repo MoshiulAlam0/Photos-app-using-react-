@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import ImageCard from "./ImageCard";
 import CollectionCon from "./CollectionCon";
 
 const MyCollection = () => {
