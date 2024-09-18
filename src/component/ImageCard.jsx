@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { FaRegHeart } from "react-icons/fa";
 
 import { IoBagAddOutline } from "react-icons/io5";
@@ -18,8 +18,6 @@ const ImageCard = ({
   id,
   fromCollection,
 }) => {
-  // const { collectionState } = useContext(MyContext); // context
-
   const [isLike, setisLike] = useState(false);
   const [isDownlode, setisDownlode] = useState(false);
 
