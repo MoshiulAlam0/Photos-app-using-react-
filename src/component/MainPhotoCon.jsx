@@ -1,7 +1,6 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import ImageCard from "./ImageCard";
 import PropTypes from "prop-types";
-import { MyContext } from "../context/All_context";
 import Lodder from "./sunComonent/Lodder";
 
 const MainPhotoCon = ({
@@ -15,7 +14,6 @@ const MainPhotoCon = ({
   searchOrder,
 }) => {
   const [page, setpage] = useState(1);
-  const myState = useContext(MyContext);
   const [isVideoRender, setisVideoRender] = useState(false);
   const [lodderDisplay, setlodderDisplay] = useState("block");
   const [errorDisplay, seterrorDisplay] = useState("none");
@@ -38,7 +36,7 @@ const MainPhotoCon = ({
       });
       if (isPhotoFiend) {
         stockValueSet("Photos");
-        console.log("i am in the photo lode");
+        // console.log("i am in the photo lode");
         let keyCode = "45929705-2b07f79792d4b03a2400490cc";
         let url = `https://pixabay.com/api/?key=${keyCode}&q=${color}+${searchText}&image_type=${photoTypeValue}&per_page=${pageSize}&page=${page}&order=${searchOrder}`;
         let res = await fetch(url);
@@ -47,7 +45,7 @@ const MainPhotoCon = ({
         setisVideoRender(false);
       } else {
         stockValueSet("Videos");
-        console.log("i am in the video lode");
+        // console.log("i am in the video lode");
         let keyCode = "45929705-2b07f79792d4b03a2400490cc";
         let url = `https://pixabay.com/api/videos/?key=${keyCode}&q={color}+${searchText}&video_type=${videoTypeVlaue}&per_page=${pageSize}&page=${page}&order=${searchOrder}`;
         let res = await fetch(url);
@@ -61,7 +59,7 @@ const MainPhotoCon = ({
       seterrorDisplay("none");
       {
         setTimeout(() => {
-          /// aftter 2sec hide loder
+          ///  hide loder aftter 2sec
           setlodderDisplay("none");
           seterrorDisplay("block");
         }, 5000);
@@ -74,12 +72,6 @@ const MainPhotoCon = ({
   useEffect(() => {
     data_Load();
   }, [page, searchText, searchOrder, isPhotoFiend, photoTypeValue, videoTypeVlaue]);
-
-  // console.log(searchText);
-  // console.log(searchOrder);
-  // console.log(isPhotoFiend)
-  // console.log(videoTypeVlaue)
-  // console.log(photoTypeValue)
   
   // render Element
   return (
@@ -142,8 +134,8 @@ MainPhotoCon.propTypes = {
 };
 MainPhotoCon.defaultProps = {
   color: "colorfull",
-  searchText: "wallpaper",
+  searchText: "new wallpaper",
   photoTypeValue: "photo",
   videoTypeVlaue: 'film',
-  pageSize: 10,
+  pageSize: 50,
 };

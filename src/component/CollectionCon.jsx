@@ -2,8 +2,9 @@ import React from "react";
 import ImageCard from "./ImageCard";
 
 const CollectionCon = ({ data }) => {
+  console.log(data.length)
   return (
-    <div className="my-galery">
+    <div className="my-galery relative">
       {data.length > 0 ? data.map((e, i) => {
         return (
           <ImageCard
@@ -18,7 +19,7 @@ const CollectionCon = ({ data }) => {
           />
         );
       }) :
-      <p className="text-center text-[2rem] text-[#c4c4c4]">there are no collection</p>
+      <p className="text-center text-[1.6rem]  text-[#c4c4c4] absolute top-0 left-1/2 -translate-x-1/2">there are no collection</p>
       }
     </div>
   );

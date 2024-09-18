@@ -8,7 +8,7 @@ const NavBar = () => {
         
   let menuItem = ['home', 'my cullection', 'about', 'contact']
   return (
-    <div className= 'fixed text-[#d1d1d1] w-full px-[6vmin] py-3 flex items-center justify-between backdrop-blur-sm	 z-20'>
+    <div className= 'fixed text-[#d1d1d1] w-full px-[6vmin] pt-3 pb-1 flex items-center justify-between backdrop-blur-sm	 z-20'>
       <a href="/"><img src="/logo2.png" className='w-12 bg-white rounded-full relative z-20' alt="" /></a>
 
       <p onClick={()=>(setright(right==='-100%'?'0%':'-100%'))} className={`menu-icon hidden text-[2.9rem] text-white relative z-[22]`}><CgMenuHotdog/></p>
