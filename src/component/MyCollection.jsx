@@ -63,69 +63,6 @@ const MyCollection = () => {
           <CollectionCon data={videos}/>
         )
         }
-
-        {
-        // text === 'photo' ? (
-        //   <CollectionCon data={photos}/>
-        //   // <Routes>
-        //   //   <Route
-        //   //       path="/"
-        //   //       element ={<CollectionCon data={photos}/>}
-        //   //   />
-        //   // </Routes>
-        // ):(
-        //   <CollectionCon data={videos}/>
-        //   // <Routes>
-        //   //   <Route
-        //   //       path="/"
-        //   //       element ={<CollectionCon data={videos}/>}
-        //   //   />
-        //   // </Routes>
-        // )
-        }
-
-        {/* {
-        text === 'photo' ? (
-          <CollectionCon data={photos}/>
-        ):(
-          <CollectionCon data={videos}/>
-        )
-        } */}
-
-        {/* {text === "photo" ? (
-          photos.length > 0 ? (
-            photos.map((e, i) => {
-              <ImageCard
-                key={i}
-                userName={e.user}
-                userImg={e.userImageURL}
-                imgUrl={e.largeImageURL}
-                downlodeUrl={e.largeImageURL}
-                mainPageUrl={e.pageURL}
-                id={e.id}
-                fromCollection={true}
-              />;
-            })
-          ) : (
-            <h1>there are no collection</h1>
-          )
-        ) : videos.length > 0 ? (
-          videos.map((e, i) => {
-            <ImageCard
-              key={i}
-              userName={e.user}
-              userImg={e.userImageURL}
-              imgUrl={e.largeImageURL}
-              downlodeUrl={e.largeImageURL}
-              mainPageUrl={e.pageURL}
-              id={e.id}
-              fromCollection={true}
-            />;
-          })
-        ) : (
-          <h1>there are no collection</h1>
-        )} */}
-
       </div>
     </div>
   );

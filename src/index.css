@@ -55,3 +55,11 @@
         opacity: .9 !important;
     }
 }
+@media (max-width: 900px) {
+.about-img{
+    width: 100%;
+}
+.about-info{
+    width: 100%;
+}
+}

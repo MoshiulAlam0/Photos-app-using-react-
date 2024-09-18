@@ -2,7 +2,6 @@ import React from "react";
 import ImageCard from "./ImageCard";
 
 const CollectionCon = ({ data }) => {
-  console.log(data.length)
   return (
     <div className="my-galery relative">
       {data.length > 0 ? data.map((e, i) => {

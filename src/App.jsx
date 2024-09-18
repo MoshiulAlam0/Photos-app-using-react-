@@ -9,6 +9,7 @@ import { MyContext } from "./context/All_context";
 import { Routes, Route } from "react-router-dom";
 import NavBar from "./component/sunComonent/NavBar";
 import MyCollection from "./component/MyCollection";
+import About from "./component/About";
 
 
 const App = () => {
@@ -56,6 +57,12 @@ const App = () => {
             path="/myCollection"
             element={
               <MyCollection/>
+            }
+          />
+          <Route
+            path="/about"
+            element={
+              <About/>
             }
           />
         </Routes>

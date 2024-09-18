@@ -13,7 +13,7 @@
     top: 0;
     left: 0;
     background: linear-gradient(to top , #0000006e, #ffffff00, #0000006e);
-    z-index: 1;
+    z-index: 5;
     backdrop-filter:blur(1px);
 }
 #gallery-con , .my-galery{
@@ -63,7 +63,18 @@ animation: animate 1s ease-in-out  infinite  alternate;
 #collection-main-btn-con:hover>#collection-btn-con{
     display: block;
 }
-
+.hilight{
+    color: #38c400;
+    font-size: 1.3rem;
+}
+#thanks{
+    text-transform: capitalize;
+    font-size: 2.4rem;
+    font-weight: bold;
+    color: transparent;
+    background: linear-gradient(to right , #43cea2 , #185a9d);
+    -webkit-background-clip: text;
+}
 @keyframes animate {  
 to{
     transform: translateY(-5px);

@@ -17,7 +17,6 @@ const NavBar = () => {
         <li><Link to={'/'} className='font-extralight hover:text-[#00c421] capitalize' href="" key={1}>{menuItem[0]}</Link></li>
         <li><Link to={'/myCollection'} className='font-extralight hover:text-[#00c421] capitalize' href="" key={1}>{menuItem[1]}</Link></li>
         <li><Link to={'/about'} className='font-extralight hover:text-[#00c421] capitalize' href="" key={1}>{menuItem[2]}</Link></li>
-        <li><Link to={'/contact'} className='font-extralight hover:text-[#00c421] capitalize' href="" key={1}>{menuItem[3]}</Link></li>
       </ul>
     </div>
   )
